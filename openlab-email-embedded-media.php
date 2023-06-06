@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Openlab Email Embedded Media
+ * Plugin Name: OpenLab Email Embedded Media
  * Description: Handle embeded content in the email notifications sent by BPGES.
  * Author: OpenLab
  * Text Domain: openlab-email-embedded-media

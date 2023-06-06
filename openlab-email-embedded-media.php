@@ -4,14 +4,20 @@
  * Description: Handle embeded content in the email notifications sent by BPGES.
  * Author: OpenLab
  * Text Domain: openlab-email-embedded-media
+ * Domain Path: /languages
  * Version: 1.0.0
 */
 
 class OpenLab_Email_Embedded_Media {
 
     function __construct() {
+		add_action( 'init', array( $this, 'load_textdomain' ) );
         add_action( 'bp_init', array( $this, 'setup' ) );
     }
+
+	public function load_textdomain() {
+		load_plugin_textdomain( 'openlab-email-embedded-media', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
 
     function setup() {
         add_filter( 'bp_ass_activity_notification_content', array( $this, 'remove_private_media_from_email' ), 300, 4 );

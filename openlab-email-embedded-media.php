@@ -3,7 +3,8 @@
  * Plugin Name: Openlab Email Embedded Media
  * Description: Handle embeded content in the email notifications sent by BPGES.
  * Author: OpenLab
- * Version: 2.0.0
+ * Text Domain: openlab-email-embedded-media
+ * Version: 1.0.0
 */
 
 class OpenLab_Email_Embedded_Media {
@@ -67,7 +68,7 @@ class OpenLab_Email_Embedded_Media {
 
                     // Get <figure> element
                     $figure = $image->parentNode->parentNode;
-                    
+
                     // Make sure it's <figure>
                     if( $figure->tagName === 'figure' ) {
                         // Move image to <figure>
@@ -88,7 +89,7 @@ class OpenLab_Email_Embedded_Media {
                 }
 
                 // Change <img> with a preview text
-                $private_link = $document->createElement( 'a', __( 'View this image by visiting the original post.', 'openlab' ) );
+                $private_link = $document->createElement( 'a', __( 'View this image by visiting the original post.', 'openlab-email-embedded-media' ) );
                 $private_link->setAttribute( 'href', $post_link );
                 $image->parentNode->replaceChild( $private_link, $image );
             }
@@ -141,7 +142,21 @@ class OpenLab_Email_Embedded_Media {
             }
 
             // Change <audio> with a preview text
-            $private_link = $document->createElement( 'a', sprintf( __( 'View this %s by visiting the original post.', 'openlab' ), $media_type ) );
+			switch ( $media_type ) {
+				case 'audio' :
+					$link_text = __( 'View this audio by visiting the original post.', 'openlab-email-embedded-media' );
+				break;
+
+				case 'video' :
+					$link_text = __( 'View this video by visiting the original post.', 'openlab-email-embedded-media' );
+				break;
+
+				default :
+					$link_text = __( 'View this media by visiting the original post.', 'openlab-email-embedded-media' );
+				break;
+			}
+
+            $private_link = $document->createElement( 'a', $link_text );
             $private_link->setAttribute( 'href', $post_link );
             $element->parentNode->replaceChild( $private_link, $element );
         }

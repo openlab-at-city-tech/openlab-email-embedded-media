@@ -20,6 +20,10 @@ class OpenLab_Email_Embedded_Media {
 	}
 
     function setup() {
+		// Don't allow BPGES to do its native filtering.
+		remove_filter( 'ass_clean_content', 'strip_tags', 4 );
+		remove_filter( 'ass_clean_content', 'ass_convert_links', 6 );
+
         add_filter( 'bp_ass_activity_notification_content', array( $this, 'remove_private_media_from_email' ), 300, 4 );
     }
 

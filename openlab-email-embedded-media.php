@@ -5,7 +5,7 @@
  * Author: OpenLab
  * Text Domain: openlab-email-embedded-media
  * Domain Path: /languages
- * Version: 1.0.0
+ * Version: 1.0.2
 */
 
 class OpenLab_Email_Embedded_Media {
